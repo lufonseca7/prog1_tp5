@@ -1,0 +1,52 @@
+/*Dado un arreglo de caracteres de tamaño MAX, hacer un
+programa que implemente métodos tal que devuelva al main dos
+arreglos: un arreglo con los caracteres que son letras vocales y
+otro con los que son consonantes. */
+
+
+public class ej13 {
+
+final public static int MAX=10;
+
+public static void main(String[] args) {
+    char [] arrLetras = {'a','b','c','n','e','i','r','s','o','t'};
+    char [] arrVocales = new char [MAX];
+    char [] arrConsonantes = new char [MAX];
+    
+    ordenarLetras(arrLetras, arrVocales, arrConsonantes);
+
+    System.out.println("arreglo vocales: ");
+    mostrarArreglo(arrVocales);
+    System.out.println("arreglo consonantes: ");
+    mostrarArreglo(arrConsonantes);
+
+
+}
+
+public static void ordenarLetras (char [] arreglo, char [] vocales, char [] consonantes){
+    int posicionVocales = 0;
+    int posicionConsonantes = 0;
+
+    for (int i=0; i<MAX; i++){
+        char c = arreglo[i];
+        if (c == 'a' || c=='e'|| c=='i'||c=='o'||c=='u'){
+            vocales [posicionVocales++] = c;
+        }
+        else{
+            consonantes [posicionConsonantes++] = c;
+        }
+    }
+}
+
+/*preguntar esta parte */
+
+public static void mostrarArreglo(char[] arreglo) {
+    for (char c : arreglo) {
+        if (c != '\u0000') { // evita imprimir espacios vacíos
+            System.out.print(c + " ");
+        }
+    }
+    System.out.println(); // salto de línea
+}
+
+}
