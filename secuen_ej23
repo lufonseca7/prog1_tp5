@@ -1,0 +1,58 @@
+/*
+Hacer un programa que devuelva la posición de inicio y fin de la
+primera secuencia de números distinta de ceros.
+*/
+public class secuen_ej23 {
+
+    public static int MAX=20;
+    public static int SEPARADOR = 0;
+    public static void main(String[] args) {
+        int [] arreglo = {0,0,2,3,5,0,1,3,0,5,3,7,0,7,5,9,0,1,0,0};
+
+
+        int inicio = 0; 
+        int fin = -1;
+        int suma = 0;
+
+        boolean encontrada = false;
+
+        while (inicio < MAX && !encontrada){
+
+            inicio = buscarInicio(arreglo, fin +1);
+
+            if (inicio <MAX){
+               fin = buscarFin(arreglo, inicio);
+               
+               suma = sumarElementos (arreglo, inicio, fin);
+               System.out.println("la suma de los elementos de la secuencia es: " + suma);
+               encontrada = true;
+                
+               
+            }
+
+        }
+
+    }
+
+    public static int sumarElementos (int [] arreglo, int inicio, int fin){
+        int suma = 0;
+        for (int i = inicio; i<=fin; i++){
+            suma += arreglo[i];
+        }
+        return suma;
+    }
+
+    public static int buscarInicio(int [] arreglo, int pos){
+        while(pos < MAX && arreglo[pos] == SEPARADOR){                  
+            pos ++;
+        }
+        return pos;
+    }
+
+    public static int buscarFin(int [] arreglo, int pos){
+        while (pos<MAX && arreglo[pos] != SEPARADOR){
+            pos++;
+        }
+        return pos - 1;
+    }
+}
