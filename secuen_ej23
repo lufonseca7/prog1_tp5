@@ -11,7 +11,7 @@ public class secuen_ej23 {
 
 
         int inicio = 0; 
-        int fin = -1;
+        int fin = -1; // fin -1 para que busque la PRIMERA vez el primer 0 o separador.
         int suma = 0;
 
         boolean encontrada = false;
