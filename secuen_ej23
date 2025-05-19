@@ -18,7 +18,7 @@ public class secuen_ej23 {
 
         while (inicio < MAX && !encontrada){
 
-            inicio = buscarInicio(arreglo, fin +1);
+            inicio = buscarInicio(arreglo, fin +1); // fin + 1 para busqueda de siguiente secuencia.
 
             if (inicio <MAX){
                fin = buscarFin(arreglo, inicio);
