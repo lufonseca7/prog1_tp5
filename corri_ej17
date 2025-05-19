@@ -1,0 +1,38 @@
+/*Hacer un programa que dado un arreglo de enteros de tamaño
+10 que se encuentra cargado, solicite al usuario un número entero
+y lo agregue al principio del arreglo (posición 0). Para ello tendrá
+que realizar un corrimiento a derecha (se pierde el último valor del
+arreglo) y colocar el número en el arreglo en la posición indicada.
+ */
+
+public class corri_ej17 {
+
+    public static int MAX = 10;
+    public static int pos = 0;
+    public static void main(String[] args) {
+        int [] arrNumeros = {0,1,2,3,4,5,6,7,8,9}; 
+        int numero = 0;
+        System.out.println("ingrese un numero");
+        numero = Utils.leerInt();   
+        corrimientoDerecha(arrNumeros, pos);
+        modificarArr(arrNumeros, pos, numero);
+        mostrarArreglo(arrNumeros);
+    
+    }
+
+    public static void corrimientoDerecha (int [] arreglo, int pos){
+        for (int i = MAX -1; i>pos; i--){
+            arreglo [i] = arreglo[i-1];
+        }
+    }
+
+    public static void modificarArr(int [] arreglo,int pos, int numero){
+        arreglo[pos] = numero;
+    }
+
+    public static void mostrarArreglo (int [] arreglo){
+        for (int i = 0; i<MAX; i++){
+            System.out.println(arreglo[i]);
+        }
+    }
+}
