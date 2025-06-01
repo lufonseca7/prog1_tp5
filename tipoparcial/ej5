@@ -1,0 +1,112 @@
+package tp_5B;
+
+
+
+/*
+Los pedidos que recibe una casa de empanadas se almacenan en un arreglo E de tamaño MAXE. Cada tipo
+de empanada se almacena con un número diferente, por ejemplo, el 5 representa la empanada de carne
+cortada a cuchillo mientras que el 7 representa la empanada de roquefort. Cada pedido está separado por
+uno o más números negativos (ya que los códigos son todos valores positivos incluyendo el 0). Para facilitar
+el proceso de producción los códigos de las empanadas están almacenadas en forma ascendente. En el
+siguiente ejemplo, tenemos 3 pedidos. El primero incluye 2 empanadas de carne cortada a cuchillo (5) y 2 de
+roquefort (7).
+Si un cliente se olvida de alguna empanada, puede agregarla luego de realizado el pedido. Para ellos debe
+indicar el número de pedido (es el orden del pedido dentro del arreglo) y el gusto de la empanada que quiere
+agregar.
+*/
+public class ej5 {
+
+    final static int MAXE= 16, SEPARADOR = 0;
+    public static void main(String[] args) {
+        
+        int [] arreglo = {-1,5,5,7,7,-6,4,9,10,-4,1,1,2,7,-9,-8};
+    
+        int inicio = 0;
+        int fin = -1;
+        int numeroP = 0;
+        int contPedidos = 0;
+        int empanada = 0;
+
+        numeroP = pedirNumeroPedido(numeroP);
+        empanada = empanadaApedir();
+        
+
+        while (inicio<MAXE){
+            inicio = buscarInicio(arreglo, fin +1);
+            if(inicio<MAXE){
+                fin = buscarFin(arreglo, inicio);
+                contPedidos ++;
+                if(contPedidos==numeroP){
+                    agregarPedido(arreglo, inicio, fin, empanada);
+                }
+            }
+        }
+        mostrarArr(arreglo);
+
+
+    }
+
+    public static int empanadaApedir(){
+        int empanada = 0;
+        System.out.println("ingrese la empanada que desea elegir: ");
+        empanada = utils.leerInt();
+
+        return empanada;
+    }
+
+    public static void agregarPedido(int [] arreglo, int inicio, int fin, int empanada){
+         // Buscar posicion donde insertar
+        int posAInsertar = buscarPosicion(arreglo, inicio, fin, empanada);
+        // Correr a derecha
+        corrimientoDerecha(arreglo, posAInsertar);
+        // Insertar valor
+        arreglo[posAInsertar] = empanada;
+    }
+
+     public static int buscarPosicion(int[] arreglo, int inicio, int fin, int empanada) {
+        // Mientras no me caiga de la secuencia y donde estos parado sea menor a valor, avanzo
+        while (inicio <= fin && arreglo[inicio] < empanada)
+            inicio++;
+
+        // que retorno???
+        return inicio;
+    }
+
+    public static void corrimientoDerecha(int[]arreglo, int pos){
+        for (int i = MAXE-1; i>pos; i-- ){
+            arreglo[i] = arreglo [i - 1];
+        }
+    }
+
+    
+
+    public static int pedirNumeroPedido(int numeroP){
+
+        System.out.println("ingrese el numero de su pedido");
+        numeroP = utils.leerInt();
+
+        return numeroP;
+    }
+
+    public static int buscarInicio(int[]arreglo, int pos){
+        while(pos<MAXE&&arreglo[pos] < 0){
+            pos ++;
+        }
+
+        return pos;
+    }
+
+    public static int buscarFin(int[]arreglo, int pos){
+        while(pos<MAXE&&arreglo[pos]>= 0){
+            pos ++;
+        }
+        return pos -1;
+    }
+
+    public static void mostrarArr(int []arreglo){
+        for(int i = 0 ; i<MAXE; i++){
+            System.out.print(arreglo[i] + "|");
+        }
+    }
+
+}
