@@ -1,0 +1,98 @@
+package tp_5B;
+/*
+La reserva natural Sierra del Tigre desea controlar el ingreso y egreso de vehículos. Para ello, dispone de
+cámaras que identifican las patentes de los vehículos que ingresan y egresan del predio. Los ingresos y
+egresos se registran en dos arreglos arrI y arrE respectivamente. Ambos arreglos son de tamaño MAXA y
+almacenan las patentes como secuencias de caracteres separados por uno o más espacios.
+Por ejemplo, en los siguientes arreglos la patente del primer vehículo en ingresar al predio fue AA 123 ZZ, y el
+primero en egresar fue AB 987 EX
+
+Se debe implementar un programa que verifique, al finalizar el día, que todos los autos que ingresaron hayan
+también egresado del predio. En caso de detectar algún vehículo que no haya egresado se debe almacenar la
+patente en un arreglo arrNoE.
+De igual manera, puede ocurrir que al ingreso del vehículo la patente no quede registrada pero si al egresar.
+En estos casos, se debe almacenar las patentes de los autos que no hayan quedado registrados en el arreglo
+arrI pero si en el arrE, en un arreglo arrNoI.
+Nota: los arreglos arrNoE y arrNoI son de tamaño MAXA y deben almacenar las patentes separadas por uno
+o más espacios.
+
+*/
+public class ej7 {
+
+    final static int MAXA = 25;
+    final static char SEPARADOR = ' ';
+
+    public static void main(String[] args) {
+        char [] arrIngresos = {' ','A','A','1','2','3','Z','Z',' ','P','R','G','0','1','0',' ','A','B','9','8','7','E','X', ' ', ' '};
+        char [] arrEgresos = {' ',' ','A','B','9','8','7','E','X',' ','A','A','1','2','3','Z','Z',' ','F','O','R','0','0','1', ' '};
+        char [] arrNoI = new char[MAXA];
+        char [] arrNoE = new char[MAXA];
+        
+        int inicioI = 0;
+        int finI = -1;
+        int inicioE = 0;
+        int finE = -1;
+        boolean existe = false;
+
+        while (inicioI<MAXA&&inicioE<MAXA){
+            inicioI = buscarInicioIngresos(arrIngresos, finI + 1);
+            inicioE = buscarInicioEgresos(arrEgresos, finE + 1);
+            if (inicioI<MAXA&&inicioE<MAXA){
+                finI = buscarFinIngresos (arrIngresos, inicioI);
+                finE = buscarFinEgresos (arrEgresos, inicioE);
+                revisarIngresos(arrIngresos, inicioI, finI, existe);
+                revisarEgresos(arrEgresos, inicioE, finE);
+            }
+        }
+
+        
+    }
+
+    public static void revisarEgresos (char []arreglo, int inicio, int fin){
+        for (int i = inicio; i <= fin; i++){
+
+        }
+    }
+
+    public static void revisarIngresos (char[] arreglo, int inicio, int fin, boolean existe){
+        for (int i = inicio; i <= fin; i ++){
+            
+        }
+    }
+
+    public static int buscarInicioIngresos (char []arreglo, int pos){
+        while (pos<MAXA&&arreglo[pos]==SEPARADOR){
+            pos ++;
+        }
+
+        return pos;
+    }
+
+     public static int buscarInicioEgresos (char []arreglo, int pos){
+         while (pos<MAXA&&arreglo[pos]==SEPARADOR){
+            pos ++;
+        }
+
+        return pos;
+    }
+
+     public static int buscarFinIngresos (char []arreglo, int pos){
+        while (pos<MAXA&&arreglo[pos]!=SEPARADOR){
+            pos ++;
+        }
+    
+        return pos -1;
+    }
+    
+     public static int buscarFinEgresos (char []arreglo, int pos){
+         while (pos<MAXA&&arreglo[pos]!=SEPARADOR){
+            pos ++;
+        }
+    
+        return pos -1;
+    }
+
+
+
+
+}
